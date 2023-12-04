@@ -1,0 +1,7 @@
+name: Commerce RozetkaPay
+type: module
+description: 'Provides Commerce integration for RozetkaPay Payments.'
+package: Commerce
+core_version_requirement: ^9
+dependencies:
+  - commerce:commerce_payment

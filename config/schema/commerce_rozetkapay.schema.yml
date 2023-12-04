@@ -1,0 +1,9 @@
+commerce_payment.commerce_payment_gateway.plugin.rozetkapay_redirect_checkout:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    login:
+      type: string
+      label: 'Login'
+    password:
+      type: string
+      label: 'Password'
