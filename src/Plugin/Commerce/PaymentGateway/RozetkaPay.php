@@ -213,10 +213,9 @@ class RozetkaPay extends OffsitePaymentGatewayBase {
 
     if (!$order) {
       $this->logger->error($this->t(
-        'Order #@order_id is not exist. Transaction #@transaction_id status: @transaction_status.',
+        'Order #@order_id is not exist. Transaction #@transaction_id.',
         [
           '@transaction_id' => $decoded_data['details']['transaction_id'],
-          '@transaction_status' => $decoded_data['details']['status'],
           '@order_id' => $order_id,
         ]
       ));
@@ -319,7 +318,7 @@ class RozetkaPay extends OffsitePaymentGatewayBase {
   /**
    * Get the payment info.
    */
-  public function paymentInfo(string $order_id): array|bool {
+  public function paymentInfo(string $order_id) {
     // Build endpoint.
     $path = sprintf('payments/%s/info?external_id=%s', self::API_VERSION, sprintf('order_1%s', $order_id));
 
@@ -457,7 +456,7 @@ class RozetkaPay extends OffsitePaymentGatewayBase {
   /**
    * The payment validation.
    */
-  public function isPaymentValid($order, array $response, $callback_method = 'notify'): array|bool {
+  public function isPaymentValid($order, array $response, $callback_method = 'notify') {
     if ($callback_method == 'return') {
       return $this->getPaymentInfoDetails($order, $response);
     }
@@ -477,7 +476,7 @@ class RozetkaPay extends OffsitePaymentGatewayBase {
   /**
    * Get the paymentInfo details for the onReturn method.
    */
-  public function getPaymentInfoDetails($order, $response): array|bool {
+  public function getPaymentInfoDetails($order, $response) {
     foreach (self::PAYMENT_INFO_DETAILS as $payment_info_detail) {
       if (isset($response[$payment_info_detail])) {
 
